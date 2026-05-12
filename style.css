@@ -30,27 +30,33 @@ body {
 .header h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .subtitle {
     font-size: 1rem;
     opacity: 0.9;
+    color: 
+;
 }
 
 .card {
-    background: white;
+    background: 
+;
     border-radius: 20px;
     padding: 30px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
     margin-bottom: 20px;
+    border: 1px solid 
+;
 }
 
 label {
     display: block;
     font-weight: 600;
     margin-bottom: 10px;
-    color: #333;
+    color: 
+;
 }
 
 input[type="text"] {
@@ -62,13 +68,22 @@ input[type="text"] {
     font-size: 1rem;
     transition: all 0.3s;
     font-family: 'Courier New', monospace;
+    background: 
+;
+    color: 
+;
+}
+
+input[type="text"]::placeholder {
+    color: 
+;
 }
 
 input[type="text"]:focus {
     outline: none;
     border-color: 
 ;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 3px rgba(85, 136, 255, 0.2);
 }
 
 button {
@@ -89,7 +104,7 @@ button {
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 5px 20px rgba(85, 136, 255, 0.5);
 }
 
 button:active {
@@ -99,9 +114,8 @@ button:active {
 .code-display {
     margin-top: 25px;
     padding: 20px;
-    background: linear-gradient(135deg, 
- 0%, 
- 100%);
+    background: 
+;
     border-radius: 15px;
     text-align: center;
 }
@@ -198,12 +212,14 @@ button:active {
 
 .history-header h2 {
     font-size: 1.3rem;
-    color: #333;
+    color: 
+;
 }
 
 #historyCount {
     font-size: 0.9rem;
-    color: #666;
+    color: 
+;
 }
 
 .history-list {
@@ -229,7 +245,8 @@ button:active {
 
 .empty-state {
     text-align: center;
-    color: #999;
+    color: 
+;
     padding: 40px 20px;
     font-style: italic;
 }
@@ -244,6 +261,8 @@ button:active {
     justify-content: space-between;
     align-items: center;
     transition: background 0.2s;
+    border: 1px solid 
+;
 }
 
 .history-item:hover {
@@ -267,14 +286,16 @@ button:active {
 
 .history-key {
     font-size: 0.85rem;
-    color: #666;
+    color: 
+;
     font-family: 'Courier New', monospace;
     word-break: break-all;
 }
 
 .history-time {
     font-size: 0.75rem;
-    color: #999;
+    color: 
+;
     margin-top: 5px;
 }
 
@@ -292,4 +313,3 @@ button:active {
         padding: 20px;
     }
 }
-

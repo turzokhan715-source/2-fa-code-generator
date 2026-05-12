@@ -3,44 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔐 2FA Code Generator</title>
+    <title>🔐 2FA Authenticator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <!-- Main Card -->
         <div class="main-card">
-            <label for="secretKey">Enter your 2FA Secret Key:</label>
-            <input 
-                type="text" 
-                id="secretKey" 
-                placeholder="JBSWY3DPEHPK3PXP"
-                autocomplete="off"
-            >
+            <div class="card-header">
+                <h1>🔐 2FA Authenticator</h1>
+                <p>Secure Time-based One-Time Password Generator</p>
+            </div>
             
-            <!-- Button and Code Display Row -->
+            <div class="input-group">
+                <label for="secretKey">Enter your 2FA Secret Key:</label>
+                <input 
+                    type="text" 
+                    id="secretKey" 
+                    placeholder="JBSWY3DPEHPK3PXP"
+                    autocomplete="off"
+                >
+            </div>
+            
             <div class="action-row">
-                <button id="generateBtn" onclick="generateCode()">Generate Code</button>
+                <button id="generateBtn" onclick="generateCode()">
+                    <span class="btn-icon">🔑</span>
+                    Generate Code
+                </button>
                 <div id="codeBox" class="code-box">
-                    <span id="totpCode">- - - - - -</span>
+                    <span id="totpCode">------</span>
                     <div class="timer-wrapper" id="timerWrapper" style="display: none;">
-                        <svg class="timer-circle" width="30" height="30">
-                            <circle cx="15" cy="15" r="13"></circle>
-                            <circle id="timerProgress" cx="15" cy="15" r="13"></circle>
+                        <svg class="timer-circle" width="32" height="32" viewBox="0 0 32 32">
+                            <circle cx="16" cy="16" r="14"></circle>
+                            <circle id="timerProgress" cx="16" cy="16" r="14"></circle>
                         </svg>
                         <span id="timer" class="timer">30</span>
                     </div>
                 </div>
             </div>
             
-            <p class="copy-hint" id="copyHint">✓ Code copied to clipboard!</p>
+            <p class="copy-hint" id="copyHint">✓ Copied to clipboard!</p>
         </div>
 
         <!-- History Card -->
         <div class="history-card">
             <div class="history-header">
-                <h2>📋 Recent Codes (Max 50)</h2>
-                <span id="historyCount">0 codes saved</span>
+                <h2>📋 Recent Codes</h2>
+                <span id="historyCount">0 saved</span>
             </div>
             <div id="historyList" class="history-list">
                 <p class="empty-state">No codes generated yet</p>
@@ -52,4 +61,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

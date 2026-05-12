@@ -25,8 +25,8 @@ function saveHistory() {
     }
 }
 
-// Generate TOTP code
-async function generateCode() {
+// Generate TOTP code (NO ASYNC!)
+function generateCode() {
     const secretInput = document.getElementById('secretKey');
     const secret = secretInput.value.trim().toUpperCase().replace(/\s/g, '');
     
@@ -36,8 +36,8 @@ async function generateCode() {
     }
     
     try {
-        // Generate code (AWAIT added here!)
-        const code = await generateTOTP(secret);
+        // Generate code (NO AWAIT - Direct call!)
+        const code = generateTOTP(secret);
         currentSecret = secret;
         
         // Display code
@@ -113,7 +113,7 @@ function startCountdown() {
     
     updateTimer(remaining);
     
-    countdownInterval = setInterval(async () => {
+    countdownInterval = setInterval(() => {
         const now = Math.floor(Date.now() / 1000);
         remaining = 30 - (now % 30);
         
@@ -121,7 +121,7 @@ function startCountdown() {
         
         // Auto-refresh code when timer hits 0
         if (remaining === 30 && currentSecret) {
-            const newCode = await generateTOTP(currentSecret);
+            const newCode = generateTOTP(currentSecret);
             document.getElementById('totpCode').textContent = newCode;
             addToHistory(currentSecret, newCode);
         }

@@ -26,7 +26,7 @@ body {
     background: white;
     border-radius: 15px;
     padding: 30px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     margin-bottom: 20px;
 }
 
@@ -35,16 +35,16 @@ label {
     font-weight: 600;
     margin-bottom: 10px;
     color: #333;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 input[type="text"] {
     width: 100%;
-    padding: 15px;
+    padding: 14px;
     border: 2px solid 
 ;
-    border-radius: 10px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
     transition: all 0.3s;
     font-family: 'Courier New', monospace;
     margin-bottom: 15px;
@@ -54,34 +54,35 @@ input[type="text"]:focus {
     outline: none;
     border-color: 
 ;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
 }
 
 /* Action Row - Button + Code Box */
 .action-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    align-items: center;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: stretch;
 }
 
 button {
-    padding: 15px;
+    padding: 14px 24px;
     background: linear-gradient(135deg, 
  0%, 
  100%);
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
 }
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
 button:active {
@@ -90,33 +91,31 @@ button:active {
 
 /* Code Box */
 .code-box {
-    padding: 15px;
+    padding: 14px 16px;
     background: 
 ;
-    border: 2px dashed 
+    border: 2px solid 
 ;
-    border-radius: 10px;
+    border-radius: 8px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    min-height: 55px;
 }
 
 #totpCode {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: bold;
-    color: 
-;
+    color: #333;
     font-family: 'Courier New', monospace;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
 }
 
 .timer-wrapper {
     position: relative;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     flex-shrink: 0;
 }
 
@@ -125,7 +124,7 @@ button:active {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: bold;
     color: 
 ;
@@ -137,7 +136,7 @@ button:active {
 
 .timer-circle circle {
     fill: none;
-    stroke-width: 3;
+    stroke-width: 2.5;
 }
 
 .timer-circle circle:first-child {
@@ -148,13 +147,13 @@ button:active {
 .timer-circle circle:last-child {
     stroke: 
 ;
-    stroke-dasharray: 94.2;
+    stroke-dasharray: 81.68;
     stroke-dashoffset: 0;
     transition: stroke-dashoffset 1s linear;
 }
 
 .copy-hint {
-    margin-top: 12px;
+    margin-top: 10px;
     color: 
 ;
     font-weight: 600;
@@ -173,7 +172,7 @@ button:active {
     background: white;
     border-radius: 15px;
     padding: 25px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     max-height: 400px;
     overflow: hidden;
     display: flex;
@@ -191,12 +190,12 @@ button:active {
 }
 
 .history-header h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #333;
 }
 
 #historyCount {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #666;
 }
 
@@ -226,13 +225,14 @@ button:active {
     color: #999;
     padding: 30px 20px;
     font-style: italic;
+    font-size: 0.9rem;
 }
 
 .history-item {
     padding: 12px;
     background: 
 ;
-    border-radius: 10px;
+    border-radius: 8px;
     margin-bottom: 8px;
     transition: background 0.2s;
 }
@@ -243,7 +243,7 @@ button:active {
 }
 
 .history-code {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: 
 ;
@@ -253,7 +253,7 @@ button:active {
 }
 
 .history-key {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: #666;
     font-family: 'Courier New', monospace;
     word-break: break-all;
@@ -271,7 +271,12 @@ button:active {
         grid-template-columns: 1fr;
     }
     
+    button {
+        padding: 14px;
+    }
+    
     #totpCode {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        letter-spacing: 3px;
     }
 }

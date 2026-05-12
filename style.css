@@ -53,7 +53,7 @@ body {
 }
 
 .input-group {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 label {
@@ -86,32 +86,26 @@ input[type="text"]:focus {
     box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
-/* Action Row */
-.action-row {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 12px;
-    align-items: stretch;
-    margin-bottom: 12px;
-}
-
+/* Button */
 button {
-    padding: 14px 24px;
+    width: 100%;
+    padding: 16px;
     background: linear-gradient(135deg, 
  0%, 
  100%);
     color: white;
     border: none;
     border-radius: 12px;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
-    white-space: nowrap;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    margin-bottom: 12px;
 }
 
 .btn-icon {
@@ -125,70 +119,6 @@ button:hover {
 
 button:active {
     transform: translateY(0);
-}
-
-/* Code Box */
-.code-box {
-    padding: 14px 20px;
-    background: linear-gradient(135deg, 
- 0%, 
- 100%);
-    border: 2px solid 
-;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
-#totpCode {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: 
-;
-    font-family: 'Courier New', monospace;
-    letter-spacing: 6px;
-}
-
-.timer-wrapper {
-    position: relative;
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-}
-
-.timer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: 
-;
-}
-
-.timer-circle {
-    transform: rotate(-90deg);
-}
-
-.timer-circle circle {
-    fill: none;
-    stroke-width: 3;
-}
-
-.timer-circle circle:first-child {
-    stroke: 
-;
-}
-
-.timer-circle circle:last-child {
-    stroke: 
-;
-    stroke-dasharray: 87.96;
-    stroke-dashoffset: 0;
-    transition: stroke-dashoffset 1s linear;
 }
 
 .copy-hint {
@@ -211,7 +141,7 @@ button:active {
     border-radius: 24px;
     padding: 32px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-    max-height: 420px;
+    max-height: 500px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -247,7 +177,7 @@ button:active {
 
 .history-list {
     overflow-y: auto;
-    max-height: 320px;
+    max-height: 400px;
 }
 
 .history-list::-webkit-scrollbar {
@@ -296,7 +226,7 @@ button:active {
 }
 
 .history-code {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: 
 ;
@@ -345,18 +275,8 @@ button:active {
         font-size: 0.8rem;
     }
     
-    .action-row {
-        grid-template-columns: 1fr;
-    }
-    
     button {
-        justify-content: center;
-        padding: 16px;
-    }
-    
-    #totpCode {
-        font-size: 1.3rem;
-        letter-spacing: 4px;
+        padding: 14px;
     }
     
     .history-card {
@@ -371,7 +291,7 @@ button:active {
     }
     
     .history-code {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         letter-spacing: 3px;
     }
 }

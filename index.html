@@ -8,43 +8,32 @@
 </head>
 <body>
     <div class="container">
-        <!-- 3D Header Box -->
-        <div class="header-box">
-            <h1>🔐 2FA Code Generator</h1>
-            <p class="subtitle">Secure offline TOTP authentication</p>
-        </div>
-
-        <!-- Main Card with Two Columns -->
+        <!-- Main Card -->
         <div class="main-card">
-            <!-- Left Column: Input -->
-            <div class="input-section">
-                <label for="secretKey">Enter 2FA Key:</label>
-                <input 
-                    type="text" 
-                    id="secretKey" 
-                    placeholder="JBSWY3DPEHPK3PXP"
-                    autocomplete="off"
-                >
-            </div>
-
-            <!-- Right Column: Code Display -->
-            <div class="code-section">
-                <label>Generate Code</label>
-                <button id="generateBtn" onclick="generateCode()">Generate</button>
-                <div id="codeDisplay" class="code-display hidden">
-                    <div class="code-wrapper">
-                        <span id="totpCode">------</span>
-                        <div class="timer-circle-wrapper">
-                            <svg class="timer-circle" width="35" height="35">
-                                <circle cx="17.5" cy="17.5" r="15"></circle>
-                                <circle id="timerProgress" cx="17.5" cy="17.5" r="15"></circle>
-                            </svg>
-                            <span id="timer" class="timer">30</span>
-                        </div>
+            <label for="secretKey">Enter your 2FA Secret Key:</label>
+            <input 
+                type="text" 
+                id="secretKey" 
+                placeholder="JBSWY3DPEHPK3PXP"
+                autocomplete="off"
+            >
+            
+            <!-- Button and Code Display Row -->
+            <div class="action-row">
+                <button id="generateBtn" onclick="generateCode()">Generate Code</button>
+                <div id="codeBox" class="code-box">
+                    <span id="totpCode">- - - - - -</span>
+                    <div class="timer-wrapper" id="timerWrapper" style="display: none;">
+                        <svg class="timer-circle" width="35" height="35">
+                            <circle cx="17.5" cy="17.5" r="15"></circle>
+                            <circle id="timerProgress" cx="17.5" cy="17.5" r="15"></circle>
+                        </svg>
+                        <span id="timer" class="timer">30</span>
                     </div>
-                    <p class="copy-hint" id="copyHint">✓ Copied!</p>
                 </div>
             </div>
+            
+            <p class="copy-hint" id="copyHint">✓ Code copied to clipboard!</p>
         </div>
 
         <!-- History Card -->

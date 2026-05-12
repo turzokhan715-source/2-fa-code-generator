@@ -283,6 +283,9 @@ button:active {
     transition: all 0.2s;
     border: 1px solid 
 ;
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .history-item:hover {
@@ -293,13 +296,18 @@ button:active {
 }
 
 .history-code {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: 
 ;
     font-family: 'Courier New', monospace;
-    letter-spacing: 3px;
-    margin-bottom: 6px;
+    letter-spacing: 4px;
+    flex-shrink: 0;
+}
+
+.history-details {
+    flex: 1;
+    min-width: 0;
 }
 
 .history-key {
@@ -318,14 +326,23 @@ button:active {
     font-weight: 500;
 }
 
-/* Responsive */
+/* Responsive - Mobile */
 @media (max-width: 600px) {
     body {
-        padding: 20px;
+        padding: 20px 16px;
     }
     
     .main-card {
-        padding: 28px;
+        padding: 28px 24px;
+        border-radius: 20px;
+    }
+    
+    .card-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .card-header p {
+        font-size: 0.8rem;
     }
     
     .action-row {
@@ -334,10 +351,45 @@ button:active {
     
     button {
         justify-content: center;
+        padding: 16px;
     }
     
     #totpCode {
         font-size: 1.3rem;
         letter-spacing: 4px;
+    }
+    
+    .history-card {
+        padding: 24px 20px;
+        border-radius: 20px;
+    }
+    
+    .history-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .history-code {
+        font-size: 1.2rem;
+        letter-spacing: 3px;
+    }
+}
+
+/* Responsive - Tablet */
+@media (min-width: 601px) and (max-width: 900px) {
+    .container {
+        max-width: 600px;
+    }
+    
+    .main-card {
+        padding: 36px;
+    }
+}
+
+/* Responsive - Desktop */
+@media (min-width: 901px) {
+    .container {
+        max-width: 520px;
     }
 }

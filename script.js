@@ -1,5 +1,3 @@
-let currentSecret = '';
-let countdownInterval = null;
 let history = [];
 
 // Load history from localStorage
@@ -38,11 +36,6 @@ function generateCode() {
     try {
         // Generate code
         const code = generateTOTP(secret);
-        currentSecret = secret;
-        
-        // Display code
-        document.getElementById('totpCode').textContent = code;
-        document.getElementById('timerWrapper').style.display = 'flex';
         
         // Auto-copy to clipboard
         copyToClipboard(code);
@@ -50,11 +43,8 @@ function generateCode() {
         // Clear input field
         secretInput.value = '';
         
-        // Add to history
+        // Add to history (code goes directly to history)
         addToHistory(secret, code);
-        
-        // Start countdown
-        startCountdown();
         
     } catch (error) {
         alert('❌ Invalid secret key! Please check and try again.');
@@ -100,42 +90,6 @@ function showCopyHint() {
     setTimeout(() => {
         hint.classList.remove('show');
     }, 2000);
-}
-
-// Start 30-second countdown
-function startCountdown() {
-    if (countdownInterval) {
-        clearInterval(countdownInterval);
-    }
-    
-    const now = Math.floor(Date.now() / 1000);
-    let remaining = 30 - (now % 30);
-    
-    updateTimer(remaining);
-    
-    countdownInterval = setInterval(() => {
-        const now = Math.floor(Date.now() / 1000);
-        remaining = 30 - (now % 30);
-        
-        updateTimer(remaining);
-        
-        // Auto-refresh code when timer hits 0
-        if (remaining === 30 && currentSecret) {
-            const newCode = generateTOTP(currentSecret);
-            document.getElementById('totpCode').textContent = newCode;
-            addToHistory(currentSecret, newCode);
-        }
-    }, 1000);
-}
-
-// Update timer display
-function updateTimer(seconds) {
-    document.getElementById('timer').textContent = seconds;
-    
-    const circle = document.getElementById('timerProgress');
-    const circumference = 87.96;
-    const offset = circumference - (seconds / 30) * circumference;
-    circle.style.strokeDashoffset = offset;
 }
 
 // Add code to history

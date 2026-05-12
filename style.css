@@ -86,15 +86,16 @@ input[type="text"]:focus {
     box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
-/* Button */
+/* Button - BLACK TEXT */
 button {
     width: 100%;
     padding: 16px;
-    background: linear-gradient(135deg, 
- 0%, 
- 100%);
-    color: white;
-    border: none;
+    background: 
+;
+    color: 
+;
+    border: 2px solid 
+;
     border-radius: 12px;
     font-size: 1rem;
     font-weight: 600;
@@ -104,21 +105,58 @@ button {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .btn-icon {
     font-size: 1.1rem;
 }
 
+.btn-text {
+    color: 
+;
+}
+
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    background: 
+;
+    border-color: 
+;
+    transform: translateY(-1px);
 }
 
 button:active {
     transform: translateY(0);
+}
+
+/* Code Display Box */
+.code-display {
+    background: linear-gradient(135deg, 
+ 0%, 
+ 100%);
+    border: 2px solid 
+;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.code-label {
+    font-size: 0.8rem;
+    color: 
+;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.totp-code {
+    font-size: 2rem;
+    font-weight: 700;
+    color: 
+;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 8px;
 }
 
 .copy-hint {
@@ -204,6 +242,7 @@ button:active {
     font-size: 0.9rem;
 }
 
+/* History Item - Code LEFT, Key RIGHT, SAME SIZE */
 .history-item {
     padding: 16px;
     background: 
@@ -213,9 +252,10 @@ button:active {
     transition: all 0.2s;
     border: 1px solid 
 ;
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 16px;
+    align-items: center;
 }
 
 .history-item:hover {
@@ -226,18 +266,16 @@ button:active {
 }
 
 .history-code {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: 
 ;
     font-family: 'Courier New', monospace;
-    letter-spacing: 4px;
-    flex-shrink: 0;
+    letter-spacing: 3px;
 }
 
 .history-details {
-    flex: 1;
-    min-width: 0;
+    text-align: right;
 }
 
 .history-key {
@@ -256,19 +294,23 @@ button:active {
     font-weight: 500;
 }
 
-/* Responsive - Mobile */
+/* Responsive - Mobile (Phone) */
 @media (max-width: 600px) {
     body {
         padding: 20px 16px;
     }
     
+    .container {
+        max-width: 100%;
+    }
+    
     .main-card {
-        padding: 28px 24px;
+        padding: 24px 20px;
         border-radius: 20px;
     }
     
     .card-header h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
     
     .card-header p {
@@ -277,22 +319,31 @@ button:active {
     
     button {
         padding: 14px;
+        font-size: 0.95rem;
+    }
+    
+    .totp-code {
+        font-size: 1.6rem;
+        letter-spacing: 6px;
     }
     
     .history-card {
-        padding: 24px 20px;
+        padding: 20px 16px;
         border-radius: 20px;
     }
     
     .history-item {
-        flex-direction: column;
-        align-items: flex-start;
+        grid-template-columns: 1fr;
         gap: 8px;
     }
     
+    .history-details {
+        text-align: left;
+    }
+    
     .history-code {
-        font-size: 1.3rem;
-        letter-spacing: 3px;
+        font-size: 1rem;
+        letter-spacing: 2px;
     }
 }
 
@@ -305,11 +356,29 @@ button:active {
     .main-card {
         padding: 36px;
     }
-}
-
-/* Responsive - Desktop */
-@media (min-width: 901px) {
-    .container {
-        max-width: 520px;
+    
+    .totp-code {
+        font-size: 1.8rem;
     }
 }
+
+/* Responsive - Desktop (Laptop) */
+@media (min-width: 901px) {
+    .container {
+        max-width: 580px;
+    }
+    
+    .main-card {
+        padding: 44px;
+    }
+    
+    .totp-code {
+        font-size: 2.2rem;
+        letter-spacing: 10px;
+    }
+    
+    .history-code {
+        font-size: 1.2rem;
+    }
+}
+

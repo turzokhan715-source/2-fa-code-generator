@@ -6,33 +6,43 @@ let history = [];
 function loadHistory() {
     const saved = localStorage.getItem('totpHistory');
     if (saved) {
-        history = JSON.parse(saved);
-        updateHistoryDisplay();
+        try {
+            history = JSON.parse(saved);
+            updateHistoryDisplay();
+        } catch (e) {
+            console.error('Failed to load history:', e);
+            history = [];
+        }
     }
 }
 
 // Save history to localStorage
 function saveHistory() {
-    localStorage.setItem('totpHistory', JSON.stringify(history));
+    try {
+        localStorage.setItem('totpHistory', JSON.stringify(history));
+    } catch (e) {
+        console.error('Failed to save history:', e);
+    }
 }
 
 // Generate TOTP code
-function generateCode() {
+async function generateCode() {
     const secretInput = document.getElementById('secretKey');
     const secret = secretInput.value.trim().toUpperCase().replace(/\s/g, '');
     
     if (!secret) {
-        alert('Please enter a secret key!');
+        alert('⚠️ Please enter a secret key!');
         return;
     }
     
     try {
+        // Generate code
         const code = generateTOTP(secret);
         currentSecret = secret;
         
         // Display code
         document.getElementById('totpCode').textContent = code;
-        document.getElementById('timerWrapper').style.display = 'block';
+        document.getElementById('timerWrapper').style.display = 'flex';
         
         // Auto-copy to clipboard
         copyToClipboard(code);
@@ -47,22 +57,49 @@ function generateCode() {
         startCountdown();
         
     } catch (error) {
-        alert('Invalid secret key! Please check and try again.');
-        console.error(error);
+        alert('❌ Invalid secret key! Please check and try again.');
+        console.error('Generation error:', error);
     }
 }
 
 // Copy to clipboard with visual feedback
 function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        const hint = document.getElementById('copyHint');
-        hint.classList.add('show');
-        setTimeout(() => {
-            hint.classList.remove('show');
-        }, 2000);
-    }).catch(err => {
-        console.error('Failed to copy:', err);
-    });
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            showCopyHint();
+        }).catch(err => {
+            console.error('Failed to copy:', err);
+            fallbackCopy(text);
+        });
+    } else {
+        fallbackCopy(text);
+    }
+}
+
+// Fallback copy method
+function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand('copy');
+        showCopyHint();
+    } catch (err) {
+        console.error('Fallback copy failed:', err);
+    }
+    document.body.removeChild(textarea);
+}
+
+// Show copy hint
+function showCopyHint() {
+    const hint = document.getElementById('copyHint');
+    hint.classList.add('show');
+    setTimeout(() => {
+        hint.classList.remove('show');
+    }, 2000);
 }
 
 // Start 30-second countdown
@@ -96,19 +133,20 @@ function updateTimer(seconds) {
     document.getElementById('timer').textContent = seconds;
     
     const circle = document.getElementById('timerProgress');
-    const circumference = 81.68;
+    const circumference = 87.96;
     const offset = circumference - (seconds / 30) * circumference;
     circle.style.strokeDashoffset = offset;
 }
 
 // Add code to history
 function addToHistory(secret, code) {
-    const timestamp = new Date().toLocaleString('en-US', {
+    const now = new Date();
+    const timestamp = now.toLocaleString('en-US', {
         month: 'short',
         day: 'numeric',
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit'
+        hour12: true
     });
     
     // Add to beginning of array
@@ -132,7 +170,7 @@ function updateHistoryDisplay() {
     const historyList = document.getElementById('historyList');
     const historyCount = document.getElementById('historyCount');
     
-    historyCount.textContent = `${history.length} codes saved`;
+    historyCount.textContent = `${history.length} saved`;
     
     if (history.length === 0) {
         historyList.innerHTML = '<p class="empty-state">No codes generated yet</p>';
@@ -156,4 +194,6 @@ document.getElementById('secretKey').addEventListener('keypress', function(e) {
 });
 
 // Load history on page load
-loadHistory();
+document.addEventListener('DOMContentLoaded', function() {
+    loadHistory();
+});

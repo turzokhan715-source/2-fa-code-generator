@@ -3,57 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2FA Code Generator</title>
+    <title>🔐 2FA Code Generator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>🔐 2FA Code Generator</h1>
+            <p class="subtitle">Secure offline TOTP code generation</p>
         </div>
 
-        <div class="input-section">
+        <div class="card">
             <label for="secretKey">Enter your 2FA Secret Key:</label>
-            <input type="text" id="secretKey" placeholder="JBSWY3DPEHPK3PXP" />
+            <input 
+                type="text" 
+                id="secretKey" 
+                placeholder="JBSWY3DPEHPK3PXP"
+                autocomplete="off"
+            >
+            <button id="generateBtn" onclick="generateCode()">Generate Code</button>
             
-            <div class="button-code-container">
-                <button id="generateBtn">Generate Code</button>
-                <div class="mini-code-box">
-                    <span id="miniCode">------</span>
+            <div id="codeDisplay" class="code-display hidden">
+                <div class="code-wrapper">
+                    <span id="totpCode">------</span>
+                    <div class="timer-wrapper">
+                        <span id="timer" class="timer">30</span>
+                        <svg class="timer-circle" width="40" height="40">
+                            <circle cx="20" cy="20" r="18"></circle>
+                            <circle id="timerProgress" cx="20" cy="20" r="18"></circle>
+                        </svg>
+                    </div>
                 </div>
+                <p class="copy-hint" id="copyHint">✓ Code copied to clipboard!</p>
             </div>
         </div>
 
-        <div class="code-section" id="codeSection" style="display: none;">
-            <h2>Your Code:</h2>
-            <div class="code-container">
-                <div class="code-display-box">
-                    <span id="codeDisplay" class="code-text">------</span>
-                </div>
-                <button class="copy-btn-small" onclick="copyCode()">📋</button>
-            </div>
-            <div class="timer">
-                <span id="timer">⏱️ Valid for: 30 seconds</span>
-            </div>
-            <div class="auto-delete-warning">
-                ⚠️ Code will auto-delete when expired
-            </div>
-        </div>
-
-        <div class="history-section">
+        <div class="card history-card">
             <div class="history-header">
-                <h2>📜 Recent Codes (Max 50)</h2>
+                <h2>📋 Recent Codes (Max 50)</h2>
                 <span id="historyCount">0 codes saved</span>
             </div>
-            <div class="history-list" id="historyList">
-                <p class="no-history">No codes generated yet</p>
+            <div id="historyList" class="history-list">
+                <p class="empty-state">No codes generated yet</p>
             </div>
-            <button class="clear-btn" id="clearBtn" onclick="clearHistory()" style="display: none;">
-                🗑️ Clear All History
-            </button>
         </div>
-
-        <div id="toast" class="toast">Copied to clipboard!</div>
     </div>
 
     <script src="totp.js"></script>

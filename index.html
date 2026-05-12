@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2FA Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 2FA Code Generator</h1>
+        </div>
+
+        <div class="input-section">
+            <label for="secretKey">Enter your 2FA Secret Key:</label>
+            <input type="text" id="secretKey" placeholder="JBSWY3DPEHPK3PXP" />
+            
+            <div class="button-code-container">
+                <button id="generateBtn">Generate Code</button>
+                <div class="mini-code-box">
+                    <span id="miniCode">------</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-section" id="codeSection" style="display: none;">
+            <h2>Your Code:</h2>
+            <div class="code-container">
+                <div class="code-display-box">
+                    <span id="codeDisplay" class="code-text">------</span>
+                </div>
+                <button class="copy-btn-small" onclick="copyCode()">📋</button>
+            </div>
+            <div class="timer">
+                <span id="timer">⏱️ Valid for: 30 seconds</span>
+            </div>
+            <div class="auto-delete-warning">
+                ⚠️ Code will auto-delete when expired
+            </div>
+        </div>
+
+        <div class="history-section">
+            <div class="history-header">
+                <h2>📜 Recent Codes (Max 50)</h2>
+                <span id="historyCount">0 codes saved</span>
+            </div>
+            <div class="history-list" id="historyList">
+                <p class="no-history">No codes generated yet</p>
+            </div>
+            <button class="clear-btn" id="clearBtn" onclick="clearHistory()" style="display: none;">
+                🗑️ Clear All History
+            </button>
+        </div>
+
+        <div id="toast" class="toast">Copied to clipboard!</div>
+    </div>
+
+    <script src="totp.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

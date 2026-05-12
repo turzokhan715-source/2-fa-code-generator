@@ -1,0 +1,394 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, 
+ 0%, 
+ 100%);
+    color: 
+;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 2px solid #2ea043;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2rem;
+    color: 
+;
+}
+
+.input-section {
+    background: 
+;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.input-section label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: 
+;
+}
+
+.input-section input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 2px solid 
+;
+    border-radius: 8px;
+    background: 
+;
+    color: 
+;
+    margin-bottom: 15px;
+    transition: border 0.3s;
+}
+
+.input-section input:focus {
+    outline: none;
+    border-color: 
+;
+}
+
+.button-code-container {
+    display: flex;
+    gap: 15px;
+    align-items: stretch;
+}
+
+.button-code-container button {
+    flex: 1;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: 
+;
+    color: 
+;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.button-code-container button:hover {
+    background: 
+;
+}
+
+.button-code-container button:active {
+    transform: scale(0.98);
+}
+
+.mini-code-box {
+    background: 
+;
+    border: 2px solid 
+;
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+}
+
+#miniCode {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: 
+;
+    font-family: 'Courier New', monospace;
+}
+
+.code-section {
+    background: 
+;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.code-section h2 {
+    margin-bottom: 20px;
+    color: 
+;
+}
+
+.code-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.code-display-box {
+    background: 
+;
+    border: 2px solid 
+;
+    border-radius: 8px;
+    padding: 20px 30px;
+    min-width: 250px;
+}
+
+.code-text {
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 8px;
+    color: 
+;
+    font-family: 'Courier New', monospace;
+}
+
+.copy-btn-small {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    background: 
+;
+    color: 
+;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.copy-btn-small:hover {
+    background: 
+;
+    transform: scale(1.1);
+}
+
+.copy-btn-small:active {
+    transform: scale(0.95);
+}
+
+.timer {
+    font-size: 1.2rem;
+    color: #f85149;
+    margin-bottom: 10px;
+}
+
+.auto-delete-warning {
+    font-size: 0.9rem;
+    color: 
+;
+    opacity: 0.8;
+}
+
+.history-section {
+    background: 
+;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid 
+;
+}
+
+.history-header h2 {
+    color: 
+;
+}
+
+#historyCount {
+    font-size: 0.9rem;
+    color: 
+;
+}
+
+.history-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.history-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.history-list::-webkit-scrollbar-track {
+    background: #0d1117;
+    border-radius: 4px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: 
+;
+    border-radius: 4px;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+    background: 
+;
+}
+
+.no-history {
+    text-align: center;
+    color: 
+;
+    padding: 20px;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: 
+;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: background 0.3s;
+}
+
+.history-item:hover {
+    background: 
+;
+}
+
+.history-time {
+    color: 
+;
+    font-size: 0.9rem;
+}
+
+.history-code {
+    font-size: 1.3rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: 
+;
+    font-family: 'Courier New', monospace;
+}
+
+.history-copy-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    background: 
+;
+    color: 
+;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.history-copy-btn:hover {
+    background: 
+;
+}
+
+.clear-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    background: 
+;
+    color: 
+;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.clear-btn:hover {
+    background: 
+;
+}
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: 
+;
+    color: 
+;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .code-text {
+        font-size: 2rem;
+        letter-spacing: 5px;
+    }
+
+    .button-code-container {
+        flex-direction: column;
+    }
+
+    .mini-code-box {
+        min-width: 100%;
+    }
+
+    .code-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .history-item {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .toast {
+        right: 20px;
+        left: 20px;
+        bottom: 20px;
+    }
+}

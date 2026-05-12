@@ -25,7 +25,7 @@ function saveHistory() {
     }
 }
 
-// Generate TOTP code (NO ASYNC!)
+// Generate TOTP code
 function generateCode() {
     const secretInput = document.getElementById('secretKey');
     const secret = secretInput.value.trim().toUpperCase().replace(/\s/g, '');
@@ -36,7 +36,7 @@ function generateCode() {
     }
     
     try {
-        // Generate code (NO AWAIT - Direct call!)
+        // Generate code
         const code = generateTOTP(secret);
         currentSecret = secret;
         
@@ -180,8 +180,10 @@ function updateHistoryDisplay() {
     historyList.innerHTML = history.map(item => `
         <div class="history-item">
             <div class="history-code">${item.code}</div>
-            <div class="history-key">Key: ${item.secret}</div>
-            <div class="history-time">${item.time}</div>
+            <div class="history-details">
+                <div class="history-key">Key: ${item.secret}</div>
+                <div class="history-time">${item.time}</div>
+            </div>
         </div>
     `).join('');
 }

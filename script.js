@@ -1,131 +1,161 @@
-let currentCode = null;
-let timerInterval = null;
+let currentSecret = '';
+let countdownInterval = null;
 let history = [];
 
-window.addEventListener('DOMContentLoaded', function() {
-    loadHistory();
-    updateHistoryDisplay();
-    document.getElementById('generateBtn').addEventListener('click', generateCode);
-    document.getElementById('secretKey').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') generateCode();
-    });
-});
+// Load history from localStorage
+function loadHistory() {
+    const saved = localStorage.getItem('totpHistory');
+    if (saved) {
+        history = JSON.parse(saved);
+        updateHistoryDisplay();
+    }
+}
 
-async function generateCode() {
-    const secretKey = document.getElementById('secretKey').value.trim();
-    if (!secretKey) {
-        showToast('Please enter a 2FA secret key!', 'error');
+// Save history to localStorage
+function saveHistory() {
+    localStorage.setItem('totpHistory', JSON.stringify(history));
+}
+
+// Generate TOTP code
+function generateCode() {
+    const secretInput = document.getElementById('secretKey');
+    const secret = secretInput.value.trim().toUpperCase().replace(/\s/g, '');
+    
+    if (!secret) {
+        alert('Please enter a secret key!');
         return;
     }
+    
     try {
-        const cleanKey = secretKey.replace(/\s+/g, '');
-        const code = await generateTOTP(cleanKey);
-        currentCode = code;
-        document.getElementById('miniCode').textContent = formatCode(code);
-        document.getElementById('codeDisplay').textContent = formatCode(code);
-        document.getElementById('codeSection').style.display = 'block';
-        await navigator.clipboard.writeText(code);
-        addToHistory(code);
-        startTimer();
-        showToast('Code generated and copied!', 'success');
+        const code = generateTOTP(secret);
+        currentSecret = secret;
+        
+        // Display code
+        document.getElementById('totpCode').textContent = code;
+        document.getElementById('codeDisplay').classList.remove('hidden');
+        
+        // Auto-copy to clipboard
+        copyToClipboard(code);
+        
+        // Clear input field
+        secretInput.value = '';
+        
+        // Add to history
+        addToHistory(secret, code);
+        
+        // Start countdown
+        startCountdown();
+        
     } catch (error) {
-        showToast('Invalid 2FA key!', 'error');
+        alert('Invalid secret key! Please check and try again.');
+        console.error(error);
     }
 }
 
-function formatCode(code) {
-    return code.slice(0,3) + ' ' + code.slice(3);
+// Copy to clipboard with visual feedback
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        const hint = document.getElementById('copyHint');
+        hint.classList.add('show');
+        setTimeout(() => {
+            hint.classList.remove('show');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+    });
 }
 
-function startTimer() {
-    if (timerInterval) clearInterval(timerInterval);
-    updateTimer();
-    timerInterval = setInterval(updateTimer, 1000);
-}
-
-function updateTimer() {
-    const remaining = getTimeRemaining();
-    document.getElementById('timer').textContent = 'Valid for: ' + remaining + ' seconds';
-    if (remaining === 30) {
-        const secretKey = document.getElementById('secretKey').value.trim();
-        if (secretKey && currentCode) generateCode();
+// Start 30-second countdown
+function startCountdown() {
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
     }
+    
+    const now = Math.floor(Date.now() / 1000);
+    let remaining = 30 - (now % 30);
+    
+    updateTimer(remaining);
+    
+    countdownInterval = setInterval(() => {
+        const now = Math.floor(Date.now() / 1000);
+        remaining = 30 - (now % 30);
+        
+        updateTimer(remaining);
+        
+        // Auto-refresh code when timer hits 0
+        if (remaining === 30 && currentSecret) {
+            const newCode = generateTOTP(currentSecret);
+            document.getElementById('totpCode').textContent = newCode;
+            addToHistory(currentSecret, newCode);
+        }
+    }, 1000);
 }
 
-function copyCode() {
-    if (currentCode) {
-        navigator.clipboard.writeText(currentCode);
-        showToast('Code copied!', 'success');
+// Update timer display
+function updateTimer(seconds) {
+    document.getElementById('timer').textContent = seconds;
+    
+    const circle = document.getElementById('timerProgress');
+    const circumference = 113;
+    const offset = circumference - (seconds / 30) * circumference;
+    circle.style.strokeDashoffset = offset;
+}
+
+// Add code to history
+function addToHistory(secret, code) {
+    const timestamp = new Date().toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+    
+    // Add to beginning of array
+    history.unshift({
+        secret: secret,
+        code: code,
+        time: timestamp
+    });
+    
+    // Keep only last 50
+    if (history.length > 50) {
+        history = history.slice(0, 50);
     }
-}
-
-function copyFromHistory(code) {
-    navigator.clipboard.writeText(code);
-    showToast('Copied from history!', 'success');
-}
-
-function addToHistory(code) {
-    const now = new Date();
-    const timestamp = now.toLocaleTimeString('en-US', {hour:'2-digit',minute:'2-digit',hour12:true});
-    history.unshift({code, timestamp, date:now.getTime()});
-    if (history.length > 50) history = history.slice(0,50);
+    
     saveHistory();
     updateHistoryDisplay();
 }
 
+// Update history display
 function updateHistoryDisplay() {
     const historyList = document.getElementById('historyList');
     const historyCount = document.getElementById('historyCount');
-    const clearBtn = document.getElementById('clearBtn');
+    
+    historyCount.textContent = `${history.length} codes saved`;
+    
     if (history.length === 0) {
-        historyList.innerHTML = '<p class="no-history">No codes generated yet</p>';
-        clearBtn.style.display = 'none';
-        historyCount.textContent = '0 codes saved';
+        historyList.innerHTML = '<p class="empty-state">No codes generated yet</p>';
         return;
     }
-    historyCount.textContent = history.length + ' code' + (history.length > 1 ? 's' : '') + ' saved';
-    clearBtn.style.display = 'block';
-    historyList.innerHTML = history.map(item => 
-        '<div class="history-item"><span class="history-time">' + item.timestamp + 
-        '</span><span class="history-code">' + formatCode(item.code) + 
-        '</span><button class="history-copy-btn" onclick="copyFromHistory(\'' + item.code + '\')">Copy</button></div>'
-    ).join('');
+    
+    historyList.innerHTML = history.map(item => `
+        <div class="history-item">
+            <div class="history-info">
+                <div class="history-code">${item.code}</div>
+                <div class="history-key">Key: ${item.secret}</div>
+                <div class="history-time">${item.time}</div>
+            </div>
+        </div>
+    `).join('');
 }
 
-function clearHistory() {
-    if (confirm('Clear all history?')) {
-        history = [];
-        saveHistory();
-        updateHistoryDisplay();
-        showToast('History cleared!', 'success');
+// Allow Enter key to generate
+document.getElementById('secretKey').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        generateCode();
     }
-}
+});
 
-function saveHistory() {
-    try {
-        localStorage.setItem('2fa_history', JSON.stringify(history));
-    } catch (error) {
-        console.error('Failed to save history');
-    }
-}
-
-function loadHistory() {
-    try {
-        const saved = localStorage.getItem('2fa_history');
-        if (saved) history = JSON.parse(saved);
-    } catch (error) {
-        history = [];
-    }
-}
-
-function showToast(message, type) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.style.background = type === 'error' ? '
-' : '
-';
-    toast.classList.add('show');
-    setTimeout(function() {
-        toast.classList.remove('show');
-    }, 3000);
-}
+// Load history on page load
+loadHistory();

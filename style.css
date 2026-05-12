@@ -8,7 +8,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, 
  0%, 
- 50%, 
  100%);
     min-height: 100vh;
     padding: 20px;
@@ -18,91 +17,117 @@ body {
 }
 
 .container {
-    max-width: 500px;
+    max-width: 700px;
     width: 100%;
 }
 
-.header {
+/* 3D Header Box */
+.header-box {
+    background: linear-gradient(135deg, 
+ 0%, 
+ 100%);
+    border-radius: 20px;
+    padding: 30px;
     text-align: center;
-    color: white;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    box-shadow: 
+        0 10px 30px rgba(0,0,0,0.3),
+        0 1px 0 rgba(255,255,255,0.2) inset;
+    transform: perspective(1000px) rotateX(2deg);
+    transition: transform 0.3s;
 }
 
-.header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+.header-box:hover {
+    transform: perspective(1000px) rotateX(0deg);
+}
+
+.header-box h1 {
+    font-size: 2.2rem;
+    color: white;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .subtitle {
-    font-size: 1rem;
-    opacity: 0.9;
-    color: 
-;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.9);
 }
 
-.card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+/* Main Card - Two Columns */
+.main-card {
+    background: white;
     border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     margin-bottom: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
-label {
-    display: block;
+/* Left Column - Input */
+.input-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-section label {
     font-weight: 600;
     margin-bottom: 10px;
-    color: 
-;
+    color: #333;
+    font-size: 0.95rem;
 }
 
 input[type="text"] {
     width: 100%;
-    padding: 15px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 12px;
+    border: 2px solid 
+;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     transition: all 0.3s;
     font-family: 'Courier New', monospace;
-    background: rgba(255, 255, 255, 0.15);
-    color: 
-;
-}
-
-input[type="text"]::placeholder {
-    color: rgba(255, 255, 255, 0.5);
 }
 
 input[type="text"]:focus {
     outline: none;
     border-color: 
 ;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
-    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Right Column - Code Display */
+.code-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.code-section label {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 0.95rem;
 }
 
 button {
     width: 100%;
-    padding: 15px;
-    margin-top: 15px;
+    padding: 12px;
     background: linear-gradient(135deg, 
  0%, 
  100%);
     color: white;
     border: none;
     border-radius: 10px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 10px;
 }
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.6);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
 }
 
 button:active {
@@ -110,12 +135,12 @@ button:active {
 }
 
 .code-display {
-    margin-top: 25px;
-    padding: 25px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
+    padding: 15px;
+    background: linear-gradient(135deg, 
+ 0%, 
+ 100%);
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
 .code-display.hidden {
@@ -126,22 +151,22 @@ button:active {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 #totpCode {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
     color: 
 ;
     font-family: 'Courier New', monospace;
-    letter-spacing: 8px;
+    letter-spacing: 5px;
 }
 
-.timer-wrapper {
+.timer-circle-wrapper {
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
 }
 
 .timer {
@@ -149,7 +174,7 @@ button:active {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     font-weight: bold;
     color: 
 ;
@@ -172,17 +197,17 @@ button:active {
 .timer-circle circle:last-child {
     stroke: 
 ;
-    stroke-dasharray: 113;
+    stroke-dasharray: 94.2;
     stroke-dashoffset: 0;
     transition: stroke-dashoffset 1s linear;
 }
 
 .copy-hint {
-    margin-top: 15px;
+    margin-top: 8px;
     color: 
 ;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -191,7 +216,12 @@ button:active {
     opacity: 1;
 }
 
+/* History Card */
 .history-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     max-height: 400px;
     overflow: hidden;
     display: flex;
@@ -202,20 +232,20 @@ button:active {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.history-header h2 {
-    font-size: 1.3rem;
-    color: 
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid 
 ;
 }
 
+.history-header h2 {
+    font-size: 1.2rem;
+    color: #333;
+}
+
 #historyCount {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    color: #666;
 }
 
 .history-list {
@@ -224,11 +254,12 @@ button:active {
 }
 
 .history-list::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 .history-list::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
+    background: 
+;
     border-radius: 10px;
 }
 
@@ -240,64 +271,60 @@ button:active {
 
 .empty-state {
     text-align: center;
-    color: rgba(255, 255, 255, 0.5);
-    padding: 40px 20px;
+    color: #999;
+    padding: 30px 20px;
     font-style: italic;
 }
 
 .history-item {
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    background: 
+;
     border-radius: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin-bottom: 8px;
     transition: background 0.2s;
-    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .history-item:hover {
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.history-info {
-    flex: 1;
+    background: 
+;
 }
 
 .history-code {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: 
 ;
     font-family: 'Courier New', monospace;
-    letter-spacing: 3px;
-    margin-bottom: 5px;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
 }
 
 .history-key {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    color: #666;
     font-family: 'Courier New', monospace;
     word-break: break-all;
 }
 
 .history-time {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin-top: 5px;
+    font-size: 0.7rem;
+    color: #999;
+    margin-top: 4px;
 }
 
-@media (max-width: 600px) {
-    .header h1 {
-        font-size: 2rem;
+/* Responsive */
+@media (max-width: 650px) {
+    .main-card {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-box h1 {
+        font-size: 1.8rem;
     }
     
     #totpCode {
-        font-size: 2.5rem;
-        letter-spacing: 5px;
+        font-size: 1.8rem;
+        letter-spacing: 3px;
     }
-    
-    .card {
-        padding: 20px;
-    }
+}

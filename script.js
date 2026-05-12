@@ -1,4 +1,5 @@
 let history = [];
+let autoHideTimeout = null;
 
 // Load history from localStorage
 function loadHistory() {
@@ -37,14 +38,27 @@ function generateCode() {
         // Generate code
         const code = generateTOTP(secret);
         
+        // Show code in display box
+        document.getElementById('totpCode').textContent = code;
+        document.getElementById('codeDisplay').style.display = 'block';
+        
         // Auto-copy to clipboard
         copyToClipboard(code);
         
         // Clear input field
         secretInput.value = '';
         
-        // Add to history (code goes directly to history)
-        addToHistory(secret, code);
+        // Clear previous timeout if exists
+        if (autoHideTimeout) {
+            clearTimeout(autoHideTimeout);
+        }
+        
+        // Auto move to history after 30 seconds
+        autoHideTimeout = setTimeout(() => {
+            addToHistory(secret, code);
+            document.getElementById('codeDisplay').style.display = 'none';
+            document.getElementById('totpCode').textContent = '------';
+        }, 30000);
         
     } catch (error) {
         alert('❌ Invalid secret key! Please check and try again.');

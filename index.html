@@ -25,24 +25,12 @@
                 >
             </div>
             
-            <div class="action-row">
-                <button id="generateBtn" onclick="generateCode()">
-                    <span class="btn-icon">🔑</span>
-                    Generate Code
-                </button>
-                <div id="codeBox" class="code-box">
-                    <span id="totpCode">------</span>
-                    <div class="timer-wrapper" id="timerWrapper" style="display: none;">
-                        <svg class="timer-circle" width="32" height="32" viewBox="0 0 32 32">
-                            <circle cx="16" cy="16" r="14"></circle>
-                            <circle id="timerProgress" cx="16" cy="16" r="14"></circle>
-                        </svg>
-                        <span id="timer" class="timer">30</span>
-                    </div>
-                </div>
-            </div>
+            <button id="generateBtn" onclick="generateCode()">
+                <span class="btn-icon">🔑</span>
+                Generate Code
+            </button>
             
-            <p class="copy-hint" id="copyHint">✓ Copied to clipboard!</p>
+            <p class="copy-hint" id="copyHint">✓ Code copied to clipboard!</p>
         </div>
 
         <!-- History Card -->

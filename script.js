@@ -96,7 +96,7 @@ function updateTimer(seconds) {
     document.getElementById('timer').textContent = seconds;
     
     const circle = document.getElementById('timerProgress');
-    const circumference = 113;
+    const circumference = 94.2;
     const offset = circumference - (seconds / 30) * circumference;
     circle.style.strokeDashoffset = offset;
 }
@@ -141,11 +141,9 @@ function updateHistoryDisplay() {
     
     historyList.innerHTML = history.map(item => `
         <div class="history-item">
-            <div class="history-info">
-                <div class="history-code">${item.code}</div>
-                <div class="history-key">Key: ${item.secret}</div>
-                <div class="history-time">${item.time}</div>
-            </div>
+            <div class="history-code">${item.code}</div>
+            <div class="history-key">Key: ${item.secret}</div>
+            <div class="history-time">${item.time}</div>
         </div>
     `).join('');
 }

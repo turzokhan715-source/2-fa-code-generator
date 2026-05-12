@@ -96,7 +96,7 @@ function updateTimer(seconds) {
     document.getElementById('timer').textContent = seconds;
     
     const circle = document.getElementById('timerProgress');
-    const circumference = 94.2;
+    const circumference = 81.68;
     const offset = circumference - (seconds / 30) * circumference;
     circle.style.strokeDashoffset = offset;
 }

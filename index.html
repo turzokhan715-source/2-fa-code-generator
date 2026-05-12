@@ -27,8 +27,14 @@
             
             <button id="generateBtn" onclick="generateCode()">
                 <span class="btn-icon">🔑</span>
-                Generate Code
+                <span class="btn-text">Generate Code</span>
             </button>
+            
+            <!-- Code Display Box -->
+            <div id="codeDisplay" class="code-display" style="display: none;">
+                <div class="code-label">Your Code:</div>
+                <div id="totpCode" class="totp-code">------</div>
+            </div>
             
             <p class="copy-hint" id="copyHint">✓ Code copied to clipboard!</p>
         </div>

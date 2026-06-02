@@ -1,56 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>AI Media Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: white; }
+        .card { background-color: #1e293b; border-radius: 1rem; padding: 1.5rem; }
+    </style>
 </head>
-<body class="bg-[#0f172a] text-white min-h-screen p-8">
+<body class="p-8">
 
     <!-- Header -->
-    <nav class="flex justify-between items-center mb-12">
-        <h1 class="text-2xl font-bold flex items-center gap-2">🎙️ AI Media Studio</h1>
-        <div class="space-x-6 text-slate-300">
-            <a href="#" class="border-b-2 border-indigo-500 pb-1">Home</a>
-            <a href="#">About Us</a> <a href="#">Services</a> 
-            <a href="#">Pricing</a> <a href="#">Contact Us</a>
+    <nav class="flex justify-between items-center mb-10 max-w-7xl mx-auto">
+        <h1 class="text-2xl font-bold">🎙️ AI Media Studio</h1>
+        <div class="space-x-6 text-slate-400">
+            <a href="#" class="text-white">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Services</a>
+            <a href="#">Pricing</a>
+            <a href="#">Contact Us</a>
         </div>
     </nav>
 
-    <!-- Main Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Hero & Grid -->
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        <!-- Big Hero Card -->
-        <div class="lg:col-span-2 bg-[#1e293b] p-8 rounded-2xl">
-            <h2 class="text-4xl font-bold mb-4">Revolutionize Your Video<br>Audio with AI</h2>
+        <!-- Main Hero -->
+        <div class="lg:col-span-2 card bg-indigo-950/30">
+            <h2 class="text-4xl font-bold mb-4">Revolutionize Your Video Audio with AI</h2>
             <p class="text-slate-400 mb-6">Easily remove background noise and generate accurate subtitles for your videos in minutes.</p>
             <button class="bg-indigo-600 px-6 py-2 rounded-lg font-bold">Get Started for Free</button>
         </div>
 
-        <!-- Right Side Service Cards -->
+        <!-- Right Side Cards -->
         <div class="space-y-4">
-            <div class="bg-[#1e293b] p-6 rounded-2xl border border-indigo-500/30">
-                <h3 class="font-bold">AI Noise Reduction</h3>
-                <p class="text-xs text-slate-400">Clear and Crisp Audio...</p>
-            </div>
-            <div class="bg-[#1e293b] p-6 rounded-2xl">
-                <h3 class="font-bold">Auto Subtitle Generation</h3>
-                <p class="text-xs text-slate-400">Accurate Multi-Language...</p>
-            </div>
+            <div class="card"><h3>AI Noise Reduction</h3><p class="text-xs text-slate-400">Clear and Crisp Audio</p></div>
+            <div class="card"><h3>Auto Subtitle Generation</h3><p class="text-xs text-slate-400">Accurate Multi-Language</p></div>
         </div>
 
-        <!-- Bottom Try It Now Section -->
-        <div class="lg:col-span-3 bg-[#1e293b] p-8 rounded-2xl border-2 border-dashed border-slate-700 text-center">
+        <!-- Try It Now -->
+        <div class="lg:col-span-3 card border-2 border-dashed border-slate-700 text-center">
             <h3 class="text-xl font-bold mb-4">Try It Now</h3>
             <input type="file" id="vid" class="hidden">
             <button onclick="document.getElementById('vid').click()" class="bg-indigo-600 px-8 py-3 rounded-lg font-bold">Upload Video</button>
-            <p id="status" class="mt-4 text-slate-400">Processing Status: Idle</p>
+            <p class="mt-2 text-slate-500">Processing Status: Idle</p>
         </div>
-
     </div>
-
-    <!-- Footer -->
-    <footer class="mt-12 pt-6 border-t border-slate-800 text-center text-slate-500 text-sm">
-        <p>© 2026 AI Media Studio | Privacy Policy | Terms of Service</p>
-    </footer>
 
 </body>
 </html>

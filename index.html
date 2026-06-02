@@ -3,34 +3,54 @@
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-950 text-white">
+<body class="bg-[#0f172a] text-white min-h-screen p-8">
 
-    <nav class="p-6 flex justify-between max-w-6xl mx-auto">
-        <h1 class="text-2xl font-bold text-indigo-500">AI Media Studio</h1>
-        <div class="space-x-8">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+    <!-- Header -->
+    <nav class="flex justify-between items-center mb-12">
+        <h1 class="text-2xl font-bold flex items-center gap-2">🎙️ AI Media Studio</h1>
+        <div class="space-x-6 text-slate-300">
+            <a href="#" class="border-b-2 border-indigo-500 pb-1">Home</a>
+            <a href="#">About Us</a> <a href="#">Services</a> 
+            <a href="#">Pricing</a> <a href="#">Contact Us</a>
         </div>
     </nav>
 
-    <section id="home" class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 p-10">
-        <div>
-            <h2 class="text-5xl font-bold">Revolutionize Your Video</h2>
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Big Hero Card -->
+        <div class="lg:col-span-2 bg-[#1e293b] p-8 rounded-2xl">
+            <h2 class="text-4xl font-bold mb-4">Revolutionize Your Video<br>Audio with AI</h2>
+            <p class="text-slate-400 mb-6">Easily remove background noise and generate accurate subtitles for your videos in minutes.</p>
+            <button class="bg-indigo-600 px-6 py-2 rounded-lg font-bold">Get Started for Free</button>
         </div>
-        <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800">
+
+        <!-- Right Side Service Cards -->
+        <div class="space-y-4">
+            <div class="bg-[#1e293b] p-6 rounded-2xl border border-indigo-500/30">
+                <h3 class="font-bold">AI Noise Reduction</h3>
+                <p class="text-xs text-slate-400">Clear and Crisp Audio...</p>
             </div>
-    </section>
+            <div class="bg-[#1e293b] p-6 rounded-2xl">
+                <h3 class="font-bold">Auto Subtitle Generation</h3>
+                <p class="text-xs text-slate-400">Accurate Multi-Language...</p>
+            </div>
+        </div>
 
-    <section id="about" class="p-20 bg-slate-900 text-center">
-        <h2 class="text-3xl font-bold mb-4">About Us</h2>
-        <p class="max-w-2xl mx-auto text-slate-400">আমরা এআই ব্যবহার করে ভিডিও এডিটিং সহজ করি...</p>
-    </section>
+        <!-- Bottom Try It Now Section -->
+        <div class="lg:col-span-3 bg-[#1e293b] p-8 rounded-2xl border-2 border-dashed border-slate-700 text-center">
+            <h3 class="text-xl font-bold mb-4">Try It Now</h3>
+            <input type="file" id="vid" class="hidden">
+            <button onclick="document.getElementById('vid').click()" class="bg-indigo-600 px-8 py-3 rounded-lg font-bold">Upload Video</button>
+            <p id="status" class="mt-4 text-slate-400">Processing Status: Idle</p>
+        </div>
 
-    <section id="contact" class="p-20 text-center">
-        <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
-        <p>Email: support@aimedia.com</p>
-    </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 pt-6 border-t border-slate-800 text-center text-slate-500 text-sm">
+        <p>© 2026 AI Media Studio | Privacy Policy | Terms of Service</p>
+    </footer>
 
 </body>
 </html>

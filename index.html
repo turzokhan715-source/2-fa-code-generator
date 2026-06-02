@@ -2,46 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AI Media Studio - Professional Tools</title>
+    <title>AI Media Studio - Pro Tools</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-900 text-white">
-    <!-- Navbar -->
-    <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-lg">
-        <h1 class="text-2xl font-bold text-indigo-400">AI Media Studio</h1>
-        <div class="space-x-6">
+    <!-- Navigation -->
+    <nav class="p-6 flex justify-between bg-gray-800">
+        <div class="text-2xl font-bold text-indigo-500">AI Media Studio</div>
+        <div class="space-x-4">
             <a href="index.html" class="hover:text-indigo-400">Home</a>
-            <a href="#" class="hover:text-indigo-400">About</a>
-            <a href="#" class="hover:text-indigo-400">Contact</a>
+            <a href="about.html" class="hover:text-indigo-400">About</a>
+            <a href="contact.html" class="hover:text-indigo-400">Contact</a>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="max-w-3xl mx-auto mt-12 p-8 bg-gray-800 rounded-xl shadow-2xl">
-        <h2 class="text-3xl font-bold mb-6 text-center">Video Noise & Subtitle Tool</h2>
-        <input type="file" id="videoInput" class="block w-full mb-6 p-2 bg-gray-700 rounded">
-        <button onclick="processVideo()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-3 rounded-lg font-bold">Process My Video</button>
-        <div id="output" class="mt-6 p-4 bg-gray-900 rounded border border-gray-700 text-sm">Waiting for file...</div>
+    <!-- Main Tool Section -->
+    <div class="max-w-2xl mx-auto mt-12 p-8 bg-gray-800 rounded-2xl shadow-xl">
+        <h1 class="text-3xl font-bold mb-4 text-center">AI Video Enhancer</h1>
+        <input type="file" id="vid" class="w-full mb-4 p-3 bg-gray-700 rounded">
+        
+        <div class="grid grid-cols-2 gap-4">
+            <button onclick="process('noise')" class="bg-indigo-600 p-3 rounded">Remove Noise</button>
+            <button onclick="process('subtitle')" class="bg-indigo-600 p-3 rounded">Add Subtitles</button>
+            <button onclick="process('upscale')" class="bg-indigo-600 p-3 rounded col-span-2">4K Upscale</button>
+        </div>
+        <div id="res" class="mt-6 p-4 bg-gray-900 rounded text-center">Status: Ready</div>
     </div>
-
-    <!-- Footer -->
-    <footer class="mt-20 text-center text-gray-500 py-6 border-t border-gray-800">
-        <p>&copy; 2026 AI Media Studio. All rights reserved.</p>
-        <a href="#" class="text-xs hover:underline">Privacy Policy</a>
-    </footer>
-
-    <script>
-        async function processVideo() {
-            const file = document.getElementById('videoInput').files[0];
-            const data = new FormData();
-            data.append('video', file);
-            document.getElementById('output').innerText = "Processing... this may take a while.";
-            
-            // "YOUR_RENDER_URL" এর জায়গায় আপনার ব্যাকএন্ড লিংক বসাবেন
-            const res = await fetch('YOUR_RENDER_URL/process', { method: 'POST', body: data });
-            const json = await res.json();
-            document.getElementById('output').innerText = "Result: " + json.subtitles;
-        }
-    </script>
 </body>
 </html>

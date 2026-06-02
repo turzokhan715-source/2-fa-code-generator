@@ -4,49 +4,60 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background: #0b0f19; color: #e2e8f0; }
-        .sidebar { background: #151921; }
-        .tool-active { border: 2px solid #6366f1; background: #1e293b; }
+        body { background: radial-gradient(circle at top right, #1e1b4b, #020617); color: white; min-height: 100vh; font-family: 'Inter', sans-serif; }
+        .premium-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s; }
+        .premium-card:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-10px); border-color: #6366f1; }
+        .glow-text { text-shadow: 0 0 20px rgba(99, 102, 241, 0.5); }
     </style>
 </head>
-<body class="flex h-screen">
+<body class="p-6 md:p-16">
 
-    <!-- Sidebar -->
-    <div class="sidebar w-64 p-6 border-r border-slate-800">
-        <h2 class="text-xl font-bold mb-10"><i class="fas fa-magic text-indigo-500 mr-2"></i> AI Media Studio</h2>
-        <nav class="space-y-4">
-            <a href="#" class="block p-3 rounded-lg bg-indigo-600"><i class="fas fa-home mr-3"></i> Dashboard</a>
-            <a href="#" class="block p-3 rounded-lg hover:bg-slate-800"><i class="fas fa-cog mr-3"></i> Settings</a>
-            <a href="#" class="block p-3 rounded-lg hover:bg-slate-800"><i class="fas fa-user mr-3"></i> Profile</a>
-        </nav>
-    </div>
+    <!-- Header -->
+    <nav class="max-w-7xl mx-auto flex justify-between items-center mb-24">
+        <div class="text-2xl font-bold tracking-tighter flex items-center gap-2">
+            <div class="bg-indigo-600 p-2 rounded-lg"><i class="fas fa-robot"></i></div> AI Studio
+        </div>
+        <div class="space-x-8 font-medium opacity-80">
+            <a href="#" class="hover:text-indigo-400 transition">Features</a>
+            <a href="#" class="hover:text-indigo-400 transition">Pricing</a>
+            <a href="#" class="bg-white/10 px-5 py-2 rounded-full hover:bg-white/20 transition">Dashboard</a>
+        </div>
+    </nav>
 
-    <!-- Main Content -->
-    <div class="flex-1 p-10">
-        <h1 class="text-3xl font-bold mb-8">Select Your AI Tool</h1>
+    <!-- Hero -->
+    <header class="max-w-4xl mx-auto text-center mb-20">
+        <h1 class="text-6xl md:text-7xl font-black mb-6 leading-tight glow-text">Automate Your Media <br><span class="text-indigo-500">With Precision.</span></h1>
+        <p class="text-xl text-slate-400">Enterprise-grade AI models designed for creators. High-fidelity results, zero complexity.</p>
+    </header>
+
+    <!-- Tool Cards -->
+    <section class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <div class="grid grid-cols-3 gap-6 mb-10">
-            <div class="tool-active p-6 rounded-2xl cursor-pointer">
-                <i class="fas fa-microphone-slash text-2xl text-indigo-400 mb-4"></i>
-                <h3 class="font-bold">Noise Reduction</h3>
-            </div>
-            <div class="bg-slate-800 p-6 rounded-2xl cursor-pointer hover:bg-slate-700">
-                <i class="fas fa-closed-captioning text-2xl text-indigo-400 mb-4"></i>
-                <h3 class="font-bold">Subtitles</h3>
-            </div>
-            <div class="bg-slate-800 p-6 rounded-2xl cursor-pointer hover:bg-slate-700">
-                <i class="fas fa-expand text-2xl text-indigo-400 mb-4"></i>
-                <h3 class="font-bold">4K Upscale</h3>
-            </div>
+        <!-- Card 1 -->
+        <div class="premium-card p-8 rounded-3xl">
+            <div class="w-14 h-14 bg-indigo-500/20 text-indigo-400 flex items-center justify-center rounded-2xl mb-6 text-2xl"><i class="fas fa-magic"></i></div>
+            <h3 class="text-2xl font-bold mb-2">Noise Reducer</h3>
+            <p class="text-slate-400 mb-8 text-sm leading-relaxed">Advanced spectral subtraction algorithms to strip unwanted ambient noise while keeping vocal clarity intact.</p>
+            <button class="w-full py-3 bg-indigo-600 rounded-xl font-bold hover:bg-indigo-500 transition">Launch Tool</button>
         </div>
 
-        <!-- Working Area -->
-        <div class="bg-slate-900 border border-slate-700 p-12 rounded-3xl text-center border-dashed">
-            <i class="fas fa-cloud-upload-alt text-6xl text-slate-600 mb-6"></i>
-            <h2 class="text-2xl font-bold">Upload your media to start</h2>
-            <p class="text-slate-400 mb-6">Drag and drop or click to browse</p>
-            <button class="bg-indigo-600 px-8 py-3 rounded-xl font-bold hover:bg-indigo-500">Select File</button>
+        <!-- Card 2 -->
+        <div class="premium-card p-8 rounded-3xl">
+            <div class="w-14 h-14 bg-indigo-500/20 text-indigo-400 flex items-center justify-center rounded-2xl mb-6 text-2xl"><i class="fas fa-closed-captioning"></i></div>
+            <h3 class="text-2xl font-bold mb-2">Auto Captions</h3>
+            <p class="text-slate-400 mb-8 text-sm leading-relaxed">Leverage transformer-based ASR models to transcribe and generate perfectly synced time-coded subtitles.</p>
+            <button class="w-full py-3 bg-indigo-600 rounded-xl font-bold hover:bg-indigo-500 transition">Launch Tool</button>
         </div>
-    </div>
+
+        <!-- Card 3 -->
+        <div class="premium-card p-8 rounded-3xl">
+            <div class="w-14 h-14 bg-indigo-500/20 text-indigo-400 flex items-center justify-center rounded-2xl mb-6 text-2xl"><i class="fas fa-expand"></i></div>
+            <h3 class="text-2xl font-bold mb-2">AI Upscaler</h3>
+            <p class="text-slate-400 mb-8 text-sm leading-relaxed">Neural network upscaling that reconstructs pixel details, transforming standard content into high-fidelity 4K output.</p>
+            <button class="w-full py-3 bg-indigo-600 rounded-xl font-bold hover:bg-indigo-500 transition">Launch Tool</button>
+        </div>
+
+    </section>
+
 </body>
 </html>

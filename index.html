@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>AI Media Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #0f172a; color: white; }
-        .card { background-color: #1e293b; border-radius: 1rem; padding: 1.5rem; }
+        body { background-color: #0b1120; color: white; font-family: sans-serif; }
+        .bg-card { background-color: #1e293b; }
     </style>
 </head>
 <body class="p-8">
 
-    <!-- Header -->
+    <!-- Navbar -->
     <nav class="flex justify-between items-center mb-10 max-w-7xl mx-auto">
-        <h1 class="text-2xl font-bold">🎙️ AI Media Studio</h1>
-        <div class="space-x-6 text-slate-400">
-            <a href="#" class="text-white">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Services</a>
-            <a href="#">Pricing</a>
-            <a href="#">Contact Us</a>
+        <h1 class="text-xl font-bold flex items-center gap-2">🎙️ AI Media Studio</h1>
+        <div class="space-x-6 text-slate-400 text-sm">
+            <a href="#" class="text-white">Home</a> <a href="#">About Us</a> 
+            <a href="#">Services</a> <a href="#">Pricing</a> <a href="#">Contact Us</a>
         </div>
     </nav>
 
-    <!-- Hero & Grid -->
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        <!-- Main Hero -->
-        <div class="lg:col-span-2 card bg-indigo-950/30">
+    <!-- Hero & Right Cards -->
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div class="lg:col-span-2 bg-card p-10 rounded-xl">
             <h2 class="text-4xl font-bold mb-4">Revolutionize Your Video Audio with AI</h2>
             <p class="text-slate-400 mb-6">Easily remove background noise and generate accurate subtitles for your videos in minutes.</p>
-            <button class="bg-indigo-600 px-6 py-2 rounded-lg font-bold">Get Started for Free</button>
+            <button class="bg-indigo-600 px-6 py-2 rounded font-bold">Get Started for Free</button>
         </div>
-
-        <!-- Right Side Cards -->
         <div class="space-y-4">
-            <div class="card"><h3>AI Noise Reduction</h3><p class="text-xs text-slate-400">Clear and Crisp Audio</p></div>
-            <div class="card"><h3>Auto Subtitle Generation</h3><p class="text-xs text-slate-400">Accurate Multi-Language</p></div>
-        </div>
-
-        <!-- Try It Now -->
-        <div class="lg:col-span-3 card border-2 border-dashed border-slate-700 text-center">
-            <h3 class="text-xl font-bold mb-4">Try It Now</h3>
-            <input type="file" id="vid" class="hidden">
-            <button onclick="document.getElementById('vid').click()" class="bg-indigo-600 px-8 py-3 rounded-lg font-bold">Upload Video</button>
-            <p class="mt-2 text-slate-500">Processing Status: Idle</p>
+            <div class="bg-card p-6 rounded-xl border border-slate-700">
+                <h3 class="font-bold">AI Noise Reduction</h3><p class="text-xs text-slate-400">Clear and Crisp Audio...</p>
+            </div>
+            <div class="bg-card p-6 rounded-xl border border-slate-700">
+                <h3 class="font-bold">Auto Subtitle Generation</h3><p class="text-xs text-slate-400">Accurate Multi-Language...</p>
+            </div>
         </div>
     </div>
 
+    <!-- Try It Now Section -->
+    <div class="max-w-7xl mx-auto bg-card p-8 rounded-xl border-2 border-dashed border-slate-700 text-center">
+        <h3 class="text-lg font-bold mb-4">Try It Now</h3>
+        <input type="file" id="vid" class="hidden" onchange="updateFile()">
+        <button onclick="document.getElementById('vid').click()" class="bg-indigo-600 px-8 py-2 rounded font-bold mb-4">Upload Video</button>
+        <p id="status" class="text-slate-500 text-sm">Processing Status: Idle</p>
+    </div>
+
+    <footer class="text-center text-slate-600 text-xs mt-10">© 2026 AI Media Studio | Privacy Policy | Terms of Service</footer>
+
+    <script>
+        function updateFile() {
+            document.getElementById('status').innerText = "File Selected! Choose an action.";
+        }
+        // এখানে আপনার আলাদা ফাংশন থাকবে
+        async function runTask(taskType) {
+            alert("Running: " + taskType);
+            // এখানে Fetch দিয়ে app.py এর সাথে কানেক্ট হবে
+        }
+    </script>
 </body>
 </html>

@@ -3,56 +3,76 @@
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #0b1120; color: white; font-family: sans-serif; }
-        .bg-card { background-color: #1e293b; }
+        body { background-color: #0f172a; color: white; font-family: 'Inter', sans-serif; }
+        .bg-custom { background-color: #1e293b; }
+        .text-cyan { color: #22d3ee; }
     </style>
 </head>
-<body class="p-8">
+<body class="p-6">
 
     <!-- Navbar -->
-    <nav class="flex justify-between items-center mb-10 max-w-7xl mx-auto">
-        <h1 class="text-xl font-bold flex items-center gap-2">🎙️ AI Media Studio</h1>
-        <div class="space-x-6 text-slate-400 text-sm">
-            <a href="#" class="text-white">Home</a> <a href="#">About Us</a> 
-            <a href="#">Services</a> <a href="#">Pricing</a> <a href="#">Contact Us</a>
+    <nav class="flex justify-between items-center max-w-7xl mx-auto mb-10">
+        <h1 class="text-2xl font-bold flex items-center gap-2">🎙️ AI Media Studio</h1>
+        <div class="space-x-8 text-slate-300">
+            <a href="#" class="border-b-2 border-cyan pb-1">Home</a>
+            <a href="#">About Us</a> <a href="#">Services</a> <a href="#">Pricing</a> <a href="#">Contact Us</a>
         </div>
     </nav>
 
-    <!-- Hero & Right Cards -->
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        <div class="lg:col-span-2 bg-card p-10 rounded-xl">
-            <h2 class="text-4xl font-bold mb-4">Revolutionize Your Video Audio with AI</h2>
-            <p class="text-slate-400 mb-6">Easily remove background noise and generate accurate subtitles for your videos in minutes.</p>
-            <button class="bg-indigo-600 px-6 py-2 rounded font-bold">Get Started for Free</button>
+    <!-- Main Grid -->
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Hero Section -->
+        <div class="lg:col-span-2 bg-custom p-8 rounded-3xl border border-slate-700">
+            <h2 class="text-5xl font-bold mb-4">Revolutionize Your Video Audio with AI</h2>
+            <p class="text-slate-400 mb-6">Easily remove background noise and generate accurate subtitles in minutes.</p>
+            <button class="bg-indigo-600 px-6 py-2 rounded-lg font-bold">Get Started for Free</button>
         </div>
+
+        <!-- Right Side Services -->
         <div class="space-y-4">
-            <div class="bg-card p-6 rounded-xl border border-slate-700">
-                <h3 class="font-bold">AI Noise Reduction</h3><p class="text-xs text-slate-400">Clear and Crisp Audio...</p>
+            <div class="bg-custom p-6 rounded-3xl border border-slate-700">
+                <h3 class="font-bold">AI Noise Reduction</h3>
+                <p class="text-xs text-slate-400">Clear and Crisp Audio</p>
             </div>
-            <div class="bg-card p-6 rounded-xl border border-slate-700">
-                <h3 class="font-bold">Auto Subtitle Generation</h3><p class="text-xs text-slate-400">Accurate Multi-Language...</p>
+            <div class="bg-custom p-6 rounded-3xl border border-slate-700">
+                <h3 class="font-bold">Auto Subtitle Generation</h3>
+                <p class="text-xs text-slate-400">Accurate Multi-Language</p>
             </div>
+        </div>
+
+        <!-- Services Footer Grid -->
+        <div class="bg-custom p-6 rounded-3xl border border-slate-700">
+            <h3 class="font-bold">AI Noise Reduction</h3>
+            <p class="text-xs text-slate-400">Clear and Crisp Audio</p>
+        </div>
+        <div class="bg-custom p-6 rounded-3xl border border-slate-700">
+            <h3 class="font-bold">Auto Subtitle Generation</h3>
+            <p class="text-xs text-slate-400">Accurate Multi-Language</p>
+        </div>
+        <div class="bg-custom p-6 rounded-3xl border border-slate-700">
+            <h3 class="font-bold">Video Quality</h3>
+            <p class="text-xs text-slate-400">Enhance and Upscale to 4K</p>
         </div>
     </div>
 
     <!-- Try It Now Section -->
-    <div class="max-w-7xl mx-auto bg-card p-8 rounded-xl border-2 border-dashed border-slate-700 text-center">
-        <h3 class="text-lg font-bold mb-4">Try It Now</h3>
-        <input type="file" id="vid" class="hidden" onchange="updateFile()">
-        <button onclick="document.getElementById('vid').click()" class="bg-indigo-600 px-8 py-2 rounded font-bold mb-4">Upload Video</button>
-        <p id="status" class="text-slate-500 text-sm">Processing Status: Idle</p>
+    <div class="max-w-7xl mx-auto mt-6 bg-custom p-8 rounded-3xl border-2 border-dashed border-slate-700 text-center">
+        <h3 class="text-xl font-bold mb-4">Try It Now</h3>
+        <input type="file" id="fileInput" class="hidden">
+        <button onclick="document.getElementById('fileInput').click()" class="bg-indigo-600 px-8 py-3 rounded-xl font-bold mb-4">Upload Video</button>
+        <div class="flex justify-center gap-4">
+            <button onclick="process('noise')" class="bg-slate-700 px-4 py-2 rounded">Remove Noise</button>
+            <button onclick="process('subtitle')" class="bg-slate-700 px-4 py-2 rounded">Add Subtitles</button>
+            <button onclick="process('4k')" class="bg-slate-700 px-4 py-2 rounded">4K Upscale</button>
+        </div>
+        <p id="status" class="mt-4 text-slate-400">Processing Status: Idle</p>
     </div>
 
-    <footer class="text-center text-slate-600 text-xs mt-10">© 2026 AI Media Studio | Privacy Policy | Terms of Service</footer>
-
     <script>
-        function updateFile() {
-            document.getElementById('status').innerText = "File Selected! Choose an action.";
-        }
-        // এখানে আপনার আলাদা ফাংশন থাকবে
-        async function runTask(taskType) {
-            alert("Running: " + taskType);
-            // এখানে Fetch দিয়ে app.py এর সাথে কানেক্ট হবে
+        async function process(action) {
+            document.getElementById('status').innerText = "Processing " + action + "...";
+            // এখানে আপনি আপনার API call বসাবেন
+            console.log("Task started: " + action);
         }
     </script>
 </body>

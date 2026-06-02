@@ -2,56 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔐 2FA Authenticator</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AI Media Studio - Professional Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <!-- Main Card -->
-        <div class="main-card">
-            <div class="card-header">
-                <h1>🔐 2FA Authenticator</h1>
-                <p>Secure Time-based One-Time Password Generator</p>
-            </div>
-            
-            <div class="input-group">
-                <label for="secretKey">Enter your 2FA Secret Key:</label>
-                <input 
-                    type="text" 
-                    id="secretKey" 
-                    placeholder="JBSWY3DPEHPK3PXP"
-                    autocomplete="off"
-                >
-            </div>
-            
-            <button id="generateBtn" onclick="generateCode()">
-                <span class="btn-icon">🔑</span>
-                <span class="btn-text">Generate Code</span>
-            </button>
-            
-            <!-- Code Display Box -->
-            <div id="codeDisplay" class="code-display" style="display: none;">
-                <div class="code-label">Your Code:</div>
-                <div id="totpCode" class="totp-code">------</div>
-            </div>
-            
-            <p class="copy-hint" id="copyHint">✓ Code copied to clipboard!</p>
+<body class="bg-gray-900 text-white">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-lg">
+        <h1 class="text-2xl font-bold text-indigo-400">AI Media Studio</h1>
+        <div class="space-x-6">
+            <a href="index.html" class="hover:text-indigo-400">Home</a>
+            <a href="#" class="hover:text-indigo-400">About</a>
+            <a href="#" class="hover:text-indigo-400">Contact</a>
         </div>
+    </nav>
 
-        <!-- History Card -->
-        <div class="history-card">
-            <div class="history-header">
-                <h2>📋 Recent Codes</h2>
-                <span id="historyCount">0 saved</span>
-            </div>
-            <div id="historyList" class="history-list">
-                <p class="empty-state">No codes generated yet</p>
-            </div>
-        </div>
+    <!-- Main Content -->
+    <div class="max-w-3xl mx-auto mt-12 p-8 bg-gray-800 rounded-xl shadow-2xl">
+        <h2 class="text-3xl font-bold mb-6 text-center">Video Noise & Subtitle Tool</h2>
+        <input type="file" id="videoInput" class="block w-full mb-6 p-2 bg-gray-700 rounded">
+        <button onclick="processVideo()" class="w-full bg-indigo-600 hover:bg-indigo-500 py-3 rounded-lg font-bold">Process My Video</button>
+        <div id="output" class="mt-6 p-4 bg-gray-900 rounded border border-gray-700 text-sm">Waiting for file...</div>
     </div>
 
-    <script src="totp.js"></script>
-    <script src="script.js"></script>
+    <!-- Footer -->
+    <footer class="mt-20 text-center text-gray-500 py-6 border-t border-gray-800">
+        <p>&copy; 2026 AI Media Studio. All rights reserved.</p>
+        <a href="#" class="text-xs hover:underline">Privacy Policy</a>
+    </footer>
+
+    <script>
+        async function processVideo() {
+            const file = document.getElementById('videoInput').files[0];
+            const data = new FormData();
+            data.append('video', file);
+            document.getElementById('output').innerText = "Processing... this may take a while.";
+            
+            // "YOUR_RENDER_URL" এর জায়গায় আপনার ব্যাকএন্ড লিংক বসাবেন
+            const res = await fetch('YOUR_RENDER_URL/process', { method: 'POST', body: data });
+            const json = await res.json();
+            document.getElementById('output').innerText = "Result: " + json.subtitles;
+        }
+    </script>
 </body>
 </html>

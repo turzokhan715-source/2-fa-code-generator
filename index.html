@@ -1,41 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { background-color: #0f172a; color: white; font-family: sans-serif; }
         .glass-card { background: #1e293b; border: 1px solid #334155; }
     </style>
 </head>
-<body class="p-10">
+<body class="p-8">
 
     <nav class="max-w-7xl mx-auto flex justify-between items-center mb-12">
-        <h1 class="text-2xl font-bold">🎙️ AI Media Studio</h1>
-        <div class="space-x-6 text-slate-300">
-            <a href="#" class="border-b-2 border-cyan-500">Home</a>
-            <a href="#">About</a> <a href="#">Services</a> <a href="#">Contact</a>
+        <h1 class="text-2xl font-bold flex items-center gap-2"><i class="fas fa-microphone-lines text-cyan-400"></i> AI Media Studio</h1>
+        <div class="space-x-8 text-slate-300">
+            <a href="#" class="text-white border-b-2 border-cyan-500">Home</a>
+            <a href="#">About Us</a> <a href="#">Services</a> <a href="#">Pricing</a> <a href="#">Contact Us</a>
         </div>
     </nav>
 
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
-        
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="glass-card p-10 rounded-3xl">
-            <h2 class="text-5xl font-bold mb-6">Revolutionize Your Video Audio with AI</h2>
-            <p class="text-slate-400 mb-8">Easily remove background noise and generate accurate subtitles for your videos in minutes.</p>
-            <button class="bg-indigo-600 px-8 py-3 rounded-xl font-bold">Get Started for Free</button>
+            <h2 class="text-4xl font-bold mb-4">Revolutionize Your Video Audio with AI</h2>
+            <p class="text-slate-400 mb-6">Easily remove background noise and generate accurate subtitles for your videos.</p>
+            <button class="bg-indigo-600 px-6 py-2 rounded-lg font-bold"><i class="fas fa-rocket mr-2"></i> Get Started for Free</button>
         </div>
 
         <div class="space-y-6">
-            <div class="glass-card p-6 rounded-3xl"><h3>AI Noise Reduction</h3><p class="text-sm text-slate-400">Clear and Crisp Audio</p></div>
-            <div class="glass-card p-6 rounded-3xl"><h3>Auto Subtitle Generation</h3><p class="text-sm text-slate-400">Accurate Multi-Language</p></div>
-            <div class="glass-card p-6 rounded-3xl"><h3>Video Quality</h3><p class="text-sm text-slate-400">Enhance and Upscale to 4K</p></div>
+            <div class="glass-card p-6 rounded-3xl flex items-start gap-4">
+                <div class="text-cyan-400 text-2xl"><i class="fas fa-wave-square"></i></div>
+                <div>
+                    <h3 class="font-bold">AI Noise Reduction</h3>
+                    <p class="text-sm text-slate-400">Clear and Crisp Audio. Remove hum, hiss, and background noises.</p>
+                </div>
+            </div>
+            <div class="glass-card p-6 rounded-3xl flex items-start gap-4">
+                <div class="text-cyan-400 text-2xl"><i class="fas fa-closed-captioning"></i></div>
+                <div>
+                    <h3 class="font-bold">Auto Subtitle Generation</h3>
+                    <p class="text-sm text-slate-400">Accurate Multi-Language subtitles for global reach.</p>
+                </div>
+            </div>
+            <div class="glass-card p-6 rounded-3xl flex items-start gap-4">
+                <div class="text-cyan-400 text-2xl"><i class="fas fa-video"></i></div>
+                <div>
+                    <h3 class="font-bold">Video Quality</h3>
+                    <p class="text-sm text-slate-400">Enhance and Upscale resolution using AI models.</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto mt-10 glass-card p-10 rounded-3xl border-dashed border-2 border-slate-600 text-center">
-        <h3 class="text-2xl font-bold mb-4">Try It Now</h3>
-        <button class="bg-indigo-600 px-10 py-4 rounded-xl font-bold">Upload Video</button>
-        <p class="text-slate-500 mt-4">Processing Status: Idle</p>
+    <div class="max-w-7xl mx-auto mt-8 glass-card p-8 rounded-3xl border-2 border-dashed border-slate-600 text-center">
+        <h3 class="text-xl font-bold mb-4"><i class="fas fa-cloud-upload-alt text-cyan-400"></i> Try It Now</h3>
+        <button class="bg-indigo-600 px-10 py-3 rounded-xl font-bold">Upload Video</button>
+        <p class="text-slate-500 mt-3 text-sm">Processing Status: Idle</p>
     </div>
 
 </body>

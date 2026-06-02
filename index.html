@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>AI Media Studio - Pro Tools</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 text-white">
-    <!-- Navigation -->
-    <nav class="p-6 flex justify-between bg-gray-800">
-        <div class="text-2xl font-bold text-indigo-500">AI Media Studio</div>
-        <div class="space-x-4">
-            <a href="index.html" class="hover:text-indigo-400">Home</a>
-            <a href="about.html" class="hover:text-indigo-400">About</a>
-            <a href="contact.html" class="hover:text-indigo-400">Contact</a>
+<body class="bg-slate-950 text-white">
+
+    <nav class="p-6 flex justify-between max-w-6xl mx-auto">
+        <h1 class="text-2xl font-bold text-indigo-500">AI Media Studio</h1>
+        <div class="space-x-8">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
-    <!-- Main Tool Section -->
-    <div class="max-w-2xl mx-auto mt-12 p-8 bg-gray-800 rounded-2xl shadow-xl">
-        <h1 class="text-3xl font-bold mb-4 text-center">AI Video Enhancer</h1>
-        <input type="file" id="vid" class="w-full mb-4 p-3 bg-gray-700 rounded">
-        
-        <div class="grid grid-cols-2 gap-4">
-            <button onclick="process('noise')" class="bg-indigo-600 p-3 rounded">Remove Noise</button>
-            <button onclick="process('subtitle')" class="bg-indigo-600 p-3 rounded">Add Subtitles</button>
-            <button onclick="process('upscale')" class="bg-indigo-600 p-3 rounded col-span-2">4K Upscale</button>
+    <section id="home" class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 p-10">
+        <div>
+            <h2 class="text-5xl font-bold">Revolutionize Your Video</h2>
         </div>
-        <div id="res" class="mt-6 p-4 bg-gray-900 rounded text-center">Status: Ready</div>
-    </div>
+        <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800">
+            </div>
+    </section>
+
+    <section id="about" class="p-20 bg-slate-900 text-center">
+        <h2 class="text-3xl font-bold mb-4">About Us</h2>
+        <p class="max-w-2xl mx-auto text-slate-400">আমরা এআই ব্যবহার করে ভিডিও এডিটিং সহজ করি...</p>
+    </section>
+
+    <section id="contact" class="p-20 text-center">
+        <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+        <p>Email: support@aimedia.com</p>
+    </section>
+
 </body>
 </html>
